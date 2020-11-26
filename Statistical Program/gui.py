@@ -7,6 +7,9 @@ L1 = Label(root, text="Enter Data Separated by commas")
 L1.pack(side=LEFT)
 E1 = Entry(root, bd=5)
 E1.pack(side=RIGHT)
+L2 = Label(root, text="Column Name")
+L2.place(relx=0.0, rely=1.0, anchor='sw')
+
 tlist = []
 
 
@@ -28,6 +31,6 @@ def addtocsv():
 
 
 button_disp = Button(root, text="Show", command=toarr)
-button_disp.pack()
+button_disp.place(relx=0.5, rely=0.5, anchor='center')
 
 root.mainloop()
