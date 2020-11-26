@@ -23,6 +23,7 @@ def toarr():
     global tlist
     tlist = string.split(",")
     print(tlist)
+    E1.delete(0, 'end')
     addtocsv()
 
 
