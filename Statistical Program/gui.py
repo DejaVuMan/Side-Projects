@@ -14,6 +14,7 @@ E2.grid(row=1, column=2)
 
 tlist = []
 colname = ["name1"]
+colcounter = 0
 
 def toarr():
     string = E1.get()
@@ -26,7 +27,7 @@ def toarr():
 
 def setcolname():
     global colname
-    colname = [str(E2.get())]
+    colname = [E2.get()]
 
 
 def addtocsv():
@@ -35,6 +36,15 @@ def addtocsv():
         df.to_csv('data.csv', index=False)
     else:
         df.to_csv('data.csv', mode='a', header=False, index=False)
+
+
+def newcolumn():
+    str2 = E1.get()
+    global tlist
+    tlist = str2.split(",")
+    df = pd.read_csv('data.csv')
+    df[colname] = tlist
+    df.to_csv('data.csv', index=False)
 
 
 def delfile():
@@ -51,6 +61,9 @@ button_lab = Button(root, text="Set Name", command=setcolname)
 button_lab.grid(row=1, column=1)
 
 button_del = Button(root, text="Delete File", command=delfile)
-button_del.grid(row=2, column=1)
+button_del.grid(row=2, column=0)
+
+button_ncol = Button(root, text="Add Column", command=newcolumn)
+button_ncol.grid(row=2, column=2)
 
 root.mainloop()
