@@ -1,6 +1,7 @@
 from tkinter import *
 import pandas as pd
 import os
+puzzle = __import__('grapher')
 
 root = Tk()
 L1 = Label(root, text="Enter Data Separated by commas")
@@ -65,5 +66,8 @@ button_del.grid(row=2, column=0)
 
 button_ncol = Button(root, text="Add Column", command=newcolumn)
 button_ncol.grid(row=2, column=2)
+
+button_disp = Button(root, text="Display Graph", command=puzzle.plotter)
+button_disp.grid(row=2, column=1)
 
 root.mainloop()
