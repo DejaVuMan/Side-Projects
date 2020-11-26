@@ -31,10 +31,17 @@ def setcolname():
 
 def addtocsv():
     df = pd.DataFrame(tlist, columns=colname)
-    if not os.path.isfile('/Statistical Program/data.csv'):
+    if not os.path.isfile('C:/GitRepo/Side-Projects/Statistical Program/data.csv'):
         df.to_csv('data.csv', index=False)
     else:
         df.to_csv('data.csv', mode='a', header=False, index=False)
+
+
+def delfile():
+    if not os.path.isfile('C:/GitRepo/Side-Projects/Statistical Program/data.csv'):
+        print("This file does not exist.")
+    else:
+        os.remove('C:/GitRepo/Side-Projects/Statistical Program/data.csv')
 
 
 button_disp = Button(root, text="Enter", command=toarr)
@@ -42,5 +49,8 @@ button_disp.grid(row=0, column=1)
 
 button_lab = Button(root, text="Set Name", command=setcolname)
 button_lab.grid(row=1, column=1)
+
+button_del = Button(root, text="Delete File", command=delfile)
+button_del.grid(row=2, column=1)
 
 root.mainloop()
