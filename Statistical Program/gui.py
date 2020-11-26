@@ -4,14 +4,16 @@ import os
 
 root = Tk()
 L1 = Label(root, text="Enter Data Separated by commas")
-L1.pack(side=LEFT)
+L1.grid(row=0, column=0)
 E1 = Entry(root, bd=5)
-E1.pack(side=RIGHT)
+E1.grid(row=0, column=2)
 L2 = Label(root, text="Column Name")
-L2.place(relx=0.0, rely=1.0, anchor='sw')
+L2.grid(row=1, column=0)
+E2 = Entry(root, bd=5)
+E2.grid(row=1, column=2)
 
 tlist = []
-
+colname = ["name1"]
 
 def toarr():
     string = E1.get()
@@ -22,15 +24,23 @@ def toarr():
     addtocsv()
 
 
+def setcolname():
+    global colname
+    colname = [str(E2.get())]
+
+
 def addtocsv():
-    df = pd.DataFrame(tlist, columns=["colummn"])
-    if not os.path.isfile('C:/GitRepo/Side-Projects/Statistical Program/list.csv'):
-        df.to_csv('list.csv', index=False)
+    df = pd.DataFrame(tlist, columns=colname)
+    if not os.path.isfile('/Statistical Program/data.csv'):
+        df.to_csv('data.csv', index=False)
     else:
-        df.to_csv('list.csv', mode='a', header=False, index=False)
+        df.to_csv('data.csv', mode='a', header=False, index=False)
 
 
-button_disp = Button(root, text="Show", command=toarr)
-button_disp.place(relx=0.5, rely=0.5, anchor='center')
+button_disp = Button(root, text="Enter", command=toarr)
+button_disp.grid(row=0, column=1)
+
+button_lab = Button(root, text="Set Name", command=setcolname)
+button_lab.grid(row=1, column=1)
 
 root.mainloop()
