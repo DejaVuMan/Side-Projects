@@ -40,7 +40,7 @@ def addtocsv():
     if not os.path.isfile('C:/GitRepo/Side-Projects/Statistical Program/data.csv'):
         df.to_csv('data.csv', index=False)
     else:
-        df.to_csv('data.csv', mode='a', header=False, index=False)
+        df.to_csv('data.csv', mode='a', header=False, index=False, columns=colname)
 
 
 def newcolumn():

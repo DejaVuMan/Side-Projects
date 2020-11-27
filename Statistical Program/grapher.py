@@ -33,6 +33,5 @@ def bar():
     height = data[a[0]]
     plt.bar(['test', 'test2', 'test3', 'test4', 'test5'], height)
     plt.xlabel(data_top[0])
-    plt.ylabel(data_top[1])
     plt.tight_layout()
     plt.show()
