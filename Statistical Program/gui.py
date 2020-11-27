@@ -17,6 +17,9 @@ tlist = []
 colname = ["name1"]
 colcounter = 0
 
+xlabel = "Default X"
+ylabel = "Default Y"
+
 def toarr():
     string = E1.get()
     print("Values Entered: " + string)
@@ -48,12 +51,30 @@ def newcolumn():
     df[colname] = tlist
     df.to_csv('data.csv', index=False)
 
+def removecolumn():
+    df = pd.read_csv('data.csv')
+    df.drop(E2.get(), inplace=True, axis=1)
+
 
 def delfile():
     if not os.path.isfile('C:/GitRepo/Side-Projects/Statistical Program/data.csv'):
         print("This file does not exist.")
     else:
         os.remove('C:/GitRepo/Side-Projects/Statistical Program/data.csv')
+
+def popupmsg():
+    print('\a')  # Will not make noise in IntelliJ, but will work if run separately
+    NORM_FONT = ("Helvetica", 10)
+    popup = Tk()
+    popup.wm_title("!")
+    label = Label(popup, text="Are you sure?", font=NORM_FONT)
+    label.pack(side="top", fill="x", pady=10)
+    B1 = Button(popup, text="Yes", command=lambda: [popup.destroy(), delfile()])
+    B1.pack(side=LEFT)
+    B2 = Button(popup, text="No", command=popup.destroy)
+    B2.pack(side=RIGHT)
+
+    popup.mainloop()
 
 
 button_disp = Button(root, text="Enter", command=toarr)
@@ -62,7 +83,7 @@ button_disp.grid(row=0, column=1)
 button_lab = Button(root, text="Set Name", command=setcolname)
 button_lab.grid(row=1, column=1)
 
-button_del = Button(root, text="Delete File", command=delfile)
+button_del = Button(root, text="Delete File", command=popupmsg)
 button_del.grid(row=2, column=0)
 
 button_ncol = Button(root, text="Add Column", command=newcolumn)
