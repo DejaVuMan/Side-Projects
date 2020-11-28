@@ -1,6 +1,7 @@
 from tkinter import *
 import pandas as pd
 import os
+import csv
 puzzle = __import__('grapher')
 
 root = Tk()
@@ -9,9 +10,9 @@ L1.grid(row=0, column=0)
 E1 = Entry(root, bd=5)
 E1.grid(row=0, column=2)
 L2 = Label(root, text="Column Name")
-L2.grid(row=1, column=0)
+L2.grid(row=2, column=0)
 E2 = Entry(root, bd=5)
-E2.grid(row=1, column=2)
+E2.grid(row=2, column=2)
 
 tlist = []
 colname = ["name1"]
@@ -19,6 +20,7 @@ colcounter = 0
 
 xlabel = "Default X"
 ylabel = "Default Y"
+
 
 def toarr():
     string = E1.get()
@@ -51,6 +53,7 @@ def newcolumn():
     df[colname] = tlist
     df.to_csv('data.csv', index=False)
 
+
 def removecolumn():
     df = pd.read_csv('data.csv')
     df.drop(E2.get(), inplace=True, axis=1)
@@ -61,6 +64,7 @@ def delfile():
         print("This file does not exist.")
     else:
         os.remove('C:/GitRepo/Side-Projects/Statistical Program/data.csv')
+
 
 def popupmsg():
     print('\a')  # Will not make noise in IntelliJ, but will work if run separately
@@ -77,19 +81,41 @@ def popupmsg():
     popup.mainloop()
 
 
+def showcsv():
+    gd = Tk()
+    with open("data.csv", newline="") as file:
+        reader = csv.reader(file)
+
+        # r and c will tell us where to grid the labels
+        r = 0
+        for col in reader:
+            c = 0
+            for row in col:
+                label = Label(gd, width=10, height=2,
+                              text=row, relief=RIDGE)
+                label.grid(row=r, column=c)
+                c += 1
+            r += 1
+    gd.mainloop()
+
+
 button_disp = Button(root, text="Enter", command=toarr)
 button_disp.grid(row=0, column=1)
 
 button_lab = Button(root, text="Set Name", command=setcolname)
-button_lab.grid(row=1, column=1)
+button_lab.grid(row=2, column=1)
 
 button_del = Button(root, text="Delete File", command=popupmsg)
-button_del.grid(row=2, column=0)
+button_del.grid(row=4, column=0)
 
 button_ncol = Button(root, text="Add Column", command=newcolumn)
-button_ncol.grid(row=2, column=2)
+button_ncol.grid(row=4, column=2)
 
 button_disp = Button(root, text="Display Graph", command=puzzle.plotter)
-button_disp.grid(row=2, column=1)
+button_disp.grid(row=4, column=1)
 
+root.geometry("600x300")
+root.grid_columnconfigure(0, weight=1)
+root.grid_columnconfigure(1, weight=1)
+root.grid_columnconfigure(2, weight=1)
 root.mainloop()
