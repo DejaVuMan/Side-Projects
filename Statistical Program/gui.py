@@ -10,9 +10,9 @@ L1.grid(row=0, column=0)
 E1 = Entry(root, bd=5)
 E1.grid(row=0, column=2)
 L2 = Label(root, text="Column Name")
-L2.grid(row=2, column=0)
+L2.grid(row=1, column=0)
 E2 = Entry(root, bd=5)
-E2.grid(row=2, column=2)
+E2.grid(row=1, column=2)
 
 tlist = []
 colname = ["name1"]
@@ -103,22 +103,27 @@ button_disp = Button(root, text="Enter", command=toarr)
 button_disp.grid(row=0, column=1)
 
 button_lab = Button(root, text="Set Name", command=setcolname)
-button_lab.grid(row=2, column=1)
+button_lab.grid(row=1, column=1)
 
 button_del = Button(root, text="Delete File", command=popupmsg)
-button_del.grid(row=4, column=0)
+button_del.grid(row=2, column=0)
 
 button_ncol = Button(root, text="Add Column", command=newcolumn)
-button_ncol.grid(row=4, column=2)
+button_ncol.grid(row=2, column=2)
 
 button_disp = Button(root, text="Display Graph", command=puzzle.plotter)
-button_disp.grid(row=4, column=1)
+button_disp.grid(row=2, column=1)
+
+button_csv = Button(root, text="Show Values", command=showcsv)
+button_csv.grid(row=2, column=3)
 
 root.geometry("500x150")
 root.grid_columnconfigure(0, weight=1)
 root.grid_columnconfigure(1, weight=1)
 root.grid_columnconfigure(2, weight=1)
+root.grid_columnconfigure(3, weight=1)
 root.grid_rowconfigure(0, weight=1)
 root.grid_rowconfigure(1, weight=1)
 root.grid_rowconfigure(2, weight=1)
+root.wm_title("Graph Creator")
 root.mainloop()
