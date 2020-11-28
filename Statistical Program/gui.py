@@ -73,11 +73,10 @@ def popupmsg():
     popup.wm_title("!")
     label = Label(popup, text="Are you sure?", font=NORM_FONT)
     label.pack(side="top", fill="x", pady=10)
-    B1 = Button(popup, text="Yes", command=lambda: [popup.destroy(), delfile()])
+    B1 = Button(popup, text="Yes", command=lambda: [popup.destroy(), delfile()], bg='red')
     B1.pack(side=LEFT)
-    B2 = Button(popup, text="No", command=popup.destroy)
+    B2 = Button(popup, text="No", command=popup.destroy, bg='green')
     B2.pack(side=RIGHT)
-
     popup.mainloop()
 
 
@@ -96,6 +95,7 @@ def showcsv():
                 label.grid(row=r, column=c)
                 c += 1
             r += 1
+            gd.wm_title("Data Values")
     gd.mainloop()
 
 
