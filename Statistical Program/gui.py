@@ -2,6 +2,7 @@ from tkinter import *
 import pandas as pd
 import os
 import csv
+
 puzzle = __import__('grapher')
 
 root = Tk()
@@ -102,6 +103,39 @@ def showcsv():
     gd.mainloop()
 
 
+def showgraph():
+    config = Tk()
+    config.wm_title("Graph Label Configuration")
+    labelx = Label(config, text="X Label")
+    labely = Label(config, text="Y Label")
+    labelt = Label(config, text="Title")
+    xent = Entry(config, bd=5)
+    yent = Entry(config, bd=5)
+    tent = Entry(config, bd=5)
+    setter = Button(config, text="Set Values", command=lambda: [tempx, tempy, tempt], bg='blue')
+    actdisp = Button(config, text="Show Graph",
+                     command=lambda: [puzzle.gettitles(tempx, tempy, tempt, 0), puzzle.plotter()])
+
+    labelx.grid(row=0, column=0)
+    labely.grid(row=1, column=0)
+    labelt.grid(row=2, column=0)
+
+    xent.grid(row=0, column=1)
+    yent.grid(row=1, column=1)
+    tent.grid(row=2, column=1)
+
+    setter.grid(row=3, column=1)
+    actdisp.grid(row=3, column=2)
+
+    config.grid_rowconfigure(0, weight=1)
+    config.grid_rowconfigure(1, weight=1)
+    config.grid_rowconfigure(2, weight=1)
+
+    tempx = xent.get()
+    tempy = yent.get()
+    tempt = tent.get()
+
+
 button_disp = Button(root, text="Enter", command=toarr)
 button_disp.grid(row=0, column=1)
 
@@ -114,7 +148,7 @@ button_del.grid(row=2, column=0)
 button_ncol = Button(root, text="Add Column", command=newcolumn)
 button_ncol.grid(row=2, column=2)
 
-button_disp = Button(root, text="Display Graph", command=puzzle.plotter)
+button_disp = Button(root, text="Display Graph", command=showgraph)
 button_disp.grid(row=2, column=1)
 
 button_csv = Button(root, text="Show Values", command=showcsv)

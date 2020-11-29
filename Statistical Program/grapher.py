@@ -6,6 +6,7 @@ xlabel = "Default X Label"
 ylabel = "Default Y Label"
 title = "Default Title"
 
+
 def gettitles(entryX, entryY, entryT, option):
     global xlabel
     if option == 1:
@@ -30,7 +31,7 @@ def plotter():
 def line():
     plt.style.use('fivethirtyeight')
     data = pd.read_csv('data.csv')
-    data_top = list(data.head())
+    # data_top = list(data.head())
     a = data.columns.tolist()
     x_ax = data[a[0]]
     y_ax = data[a[1]]
@@ -45,7 +46,7 @@ def line():
 def bar():
     plt.style.use('fivethirtyeight')
     data = pd.read_csv('data.csv')
-    data_top = list(data.head())
+    # data_top = list(data.head())
     a = data.columns.tolist()
     height = data[a[0]]
     plt.bar(['test', 'test2', 'test3', 'test4', 'test5'], height)
