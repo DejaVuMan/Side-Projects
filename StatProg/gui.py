@@ -114,6 +114,8 @@ def showgraph():
     tent = Entry(config, bd=5)
     setter = Button(config, text="Set Values",
                     command=lambda: [grf.gettitles(xent.get(), yent.get(), tent.get(), 0)], bg='blue')
+    # We need to use lambda here, as normally calling upon grf.gettitles() will immediately run it
+    # from the showgraph() window being created and not work properly.
     actdisp = Button(config, text="Show Graph",
                      command=grf.plotter)
     # TODO: Radio button for setting bar graph ind column names
