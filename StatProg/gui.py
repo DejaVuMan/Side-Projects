@@ -113,10 +113,10 @@ def showgraph():
     yent = Entry(config, bd=5)
     tent = Entry(config, bd=5)
     setter = Button(config, text="Set Values",
-                    command=grf.gettitles(xent.get(), yent.get(), tent.get(), 0), bg='blue')
+                    command=lambda: [grf.gettitles(xent.get(), yent.get(), tent.get(), 0)], bg='blue')
     actdisp = Button(config, text="Show Graph",
                      command=grf.plotter)
-    # TODO: Fix setting custom names
+    # TODO: Radio button for setting bar graph ind column names
     labelx.grid(row=0, column=0)
     labely.grid(row=1, column=0)
     labelt.grid(row=2, column=0)
