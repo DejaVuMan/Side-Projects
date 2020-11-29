@@ -3,7 +3,7 @@ import pandas as pd
 import os
 import csv
 
-puzzle = __import__('grapher')
+import StatProg.grapher as grf
 
 root = Tk()
 L1 = Label(root, text="Enter Data Separated by commas")
@@ -40,7 +40,7 @@ def setcolname():
 
 def addtocsv():
     df = pd.DataFrame(tlist, columns=colname)
-    if not os.path.isfile('C:/GitRepo/Side-Projects/Statistical Program/data.csv'):
+    if not os.path.isfile('/StatProg/data.csv'):
         df.to_csv('data.csv', index=False)
     else:
         df.to_csv('data.csv', mode='a', header=False, index=False, columns=colname)
@@ -61,10 +61,10 @@ def removecolumn():
 
 
 def delfile():
-    if not os.path.isfile('C:/GitRepo/Side-Projects/Statistical Program/data.csv'):
+    if not os.path.isfile('/StatProg/data.csv'):
         print("This file does not exist.")
     else:
-        os.remove('C:/GitRepo/Side-Projects/Statistical Program/data.csv')
+        os.remove('/StatProg/data.csv')
 
 
 def popupmsg():
@@ -112,10 +112,11 @@ def showgraph():
     xent = Entry(config, bd=5)
     yent = Entry(config, bd=5)
     tent = Entry(config, bd=5)
-    setter = Button(config, text="Set Values", command=lambda: [tempx, tempy, tempt], bg='blue')
+    setter = Button(config, text="Set Values",
+                    command=grf.gettitles(xent.get(), yent.get(), tent.get(), 0), bg='blue')
     actdisp = Button(config, text="Show Graph",
-                     command=lambda: [puzzle.gettitles(tempx, tempy, tempt, 0), puzzle.plotter()])
-
+                     command=grf.plotter)
+    # TODO: Fix setting custom names
     labelx.grid(row=0, column=0)
     labely.grid(row=1, column=0)
     labelt.grid(row=2, column=0)
@@ -130,10 +131,6 @@ def showgraph():
     config.grid_rowconfigure(0, weight=1)
     config.grid_rowconfigure(1, weight=1)
     config.grid_rowconfigure(2, weight=1)
-
-    tempx = xent.get()
-    tempy = yent.get()
-    tempt = tent.get()
 
 
 button_disp = Button(root, text="Enter", command=toarr)
