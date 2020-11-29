@@ -96,6 +96,9 @@ def showcsv():
                 c += 1
             r += 1
             gd.wm_title("Data Values")
+    gd.geometry("200x300")
+    gd.grid_columnconfigure(0, weight=1)
+    gd.grid_columnconfigure(1, weight=1)
     gd.mainloop()
 
 
